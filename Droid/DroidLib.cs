@@ -12,18 +12,18 @@ using ClipperLib;
 
 namespace DroidLib
 {
-    //-------------------------------------------------------------------------------------------//
-    // Internal Definitions 
-    //-------------------------------------------------------------------------------------------//
+
+    #region Internal Definitions 
 
     using Path = List<IntPoint>;
     using Paths = List<List<IntPoint>>;
     using Polylines = List<Polyline>;
     using cInt = Int64;
 
-    //-------------------------------------------------------------------------------------------//
-    // Droid GCode class
-    //-------------------------------------------------------------------------------------------//
+    #endregion
+
+    #region Droid GCode class
+
 
     public class DroidGCode
     {
@@ -179,9 +179,10 @@ namespace DroidLib
         }
     }
 
-    //-------------------------------------------------------------------------------------------//
-    // Droid Volume class
-    //-------------------------------------------------------------------------------------------//
+    #endregion
+
+    #region Droid Volume class
+
 
     public class DroidVolume
     {
@@ -255,9 +256,10 @@ namespace DroidLib
         }
     }
 
-    //-------------------------------------------------------------------------------------------//
-    // Droid Parameters class
-    //-------------------------------------------------------------------------------------------//
+    #endregion
+
+    #region Droid Parameters class
+
 
     public class DroidParameters
     {
@@ -280,10 +282,9 @@ namespace DroidLib
         public DroidParameters()
         { }
     }
+    #endregion
 
-    //-------------------------------------------------------------------------------------------//
-    // Save GCode
-    //-------------------------------------------------------------------------------------------//
+    #region Save GCode
 
     public class SaveGCode
     {
@@ -318,10 +319,9 @@ namespace DroidLib
             }
         }
     }
+    #endregion
 
-    //-------------------------------------------------------------------------------------------//
-    // Droid Paths class
-    //-------------------------------------------------------------------------------------------//
+    #region Droid Paths class
 
     public class DroidPaths
     {
@@ -443,10 +443,9 @@ namespace DroidLib
             printList = allPolyline;
         }
     }
+    #endregion
 
-    //-------------------------------------------------------------------------------------------//
-    // Droid Mesh Class
-    //-------------------------------------------------------------------------------------------//
+    #region Droid Mesh Class
 
     public class DroidMesh
     {
@@ -1104,10 +1103,9 @@ namespace DroidLib
             return BrimSkirtDic;
         }
     }
+    #endregion
 
-    //-------------------------------------------------------------------------------------------//
-    // Conversion Struct
-    //-------------------------------------------------------------------------------------------//
+    #region Conversion Struct
 
     public struct SClipConvTo
     {
@@ -1148,4 +1146,6 @@ namespace DroidLib
             return pt;
         }
     }
+    #endregion
+
 }
