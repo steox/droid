@@ -85,7 +85,6 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Components\.keep" />
     <None Include="packages.config" />
     <None Include="Resources\foot.png" />
   </ItemGroup>
