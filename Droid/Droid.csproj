@@ -51,24 +51,23 @@
     <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="clipper.cs" />
-    <Compile Include="DroidLib.cs" />
-    <Compile Include="Mesh.cs" />
-    <Compile Include="CVolume.cs" />
-    <Compile Include="DVolume.cs" />
-    <Compile Include="GCode.cs" />
-    <Compile Include="Header.cs" />
-    <Compile Include="Footer.cs" />
+    <Compile Include="DroidLib\DroidLib.cs" />
+    <Compile Include="Components\Mesh.cs" />
+    <Compile Include="Components\CVolume.cs" />
+    <Compile Include="Components\DVolume.cs" />
+    <Compile Include="Components\GCode.cs" />
+    <Compile Include="Components\Header.cs" />
+    <Compile Include="Components\Footer.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Save.cs" />
-    <Compile Include="Paths.cs" />
-    <Compile Include="Slicer.cs" />
+    <Compile Include="Components\Save.cs" />
+    <Compile Include="Components\Paths.cs" />
+    <Compile Include="Components\Slicer.cs" />
     <Compile Include="DroidInfo.cs" />
-    <Compile Include="Parameters.cs" />
+    <Compile Include="Components\Parameters.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
