@@ -53,6 +53,8 @@
     <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Components\Info.cs" />
+    <Compile Include="DroidLib\RegisterParams.cs" />
     <Compile Include="DroidLib\Conversion Struct.cs" />
     <Compile Include="DroidLib\Mesh class.cs" />
     <Compile Include="DroidLib\Paths class.cs" />

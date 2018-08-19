@@ -11,9 +11,7 @@ namespace Droid
         /// Initializes a new instance of the MyComponent1 class.
         /// </summary>
         public CVolume()
-          : base("Droid Volume (Cartesian)", "DVolC",
-              "Defines the Volume of the printable area of machine",
-              "Droid", "Droid")
+          : base(Title.CVolume[0], Title.CVolume[1], Title.CVolume[2], Title.CVolume[3], Title.CVolume[4])
         {
         }
 
@@ -22,9 +20,9 @@ namespace Droid
         /// </summary>
         protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
         {
-            pManager.AddNumberParameter("Width", "X", "X-Width of Print Area", GH_ParamAccess.item);
-            pManager.AddNumberParameter("Depth", "Y", "Y-Depth of Print Area", GH_ParamAccess.item);
-            pManager.AddNumberParameter("Height", "Z", "Z-Height of Print Area", GH_ParamAccess.item);
+            pManager.AddNumberParameter(Info.width[0], Info.width[1] , Info.width[2], GH_ParamAccess.item);
+            pManager.AddNumberParameter(Info.depth[0], Info.depth[1], Info.depth[2], GH_ParamAccess.item);
+            pManager.AddNumberParameter(Info.height[0], Info.height[1], Info.height[2], GH_ParamAccess.item);
         }
 
         /// <summary>
@@ -32,8 +30,8 @@ namespace Droid
         /// </summary>
         protected override void RegisterOutputParams(GH_Component.GH_OutputParamManager pManager)
         {
-            pManager.AddGenericParameter("Droid Volume", "DV ->", "Droid Volume for use for Droid Components", GH_ParamAccess.item);
-            pManager.AddCurveParameter("Preview", "P", "Preview of Printable area", GH_ParamAccess.list);
+            pManager.AddGenericParameter(Info.droidVolume[0], Info.droidVolume[1], Info.droidVolume[2], GH_ParamAccess.item);
+            pManager.AddCurveParameter(Info.preview[0], Info.preview[1], Info.preview[2], GH_ParamAccess.list);
         }
 
         /// <summary>
