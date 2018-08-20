@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Grasshopper.Kernel;
 using DroidLib;
 
-namespace Droid
+namespace Droid.Components
 {
     public class Header : GH_Component
     {
@@ -12,9 +12,7 @@ namespace Droid
         /// Initializes a new instance of the MyComponent1 class.
         /// </summary>
         public Header()
-          : base("Droid Gcode Header", "DGHead",
-              "Gcode Header creation",
-              "Droid", "Gcode")
+          : base(Title.header[0], Title.header[1], Title.header[2], Title.header[3], Title.header[4])
         {
         }
 
@@ -23,10 +21,10 @@ namespace Droid
         /// </summary>
         protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
         {
-            pManager.AddBooleanParameter("Has Heated Bed", "HB", "Option to use Heated Bed", GH_ParamAccess.item);
-            pManager.AddIntegerParameter("Heated Bed Temp", "HBT", "Set Heated Bed Temperature", GH_ParamAccess.item, 0);
-            pManager.AddIntegerParameter("Extruder Temp", "ET", "Set Extruder Hotend Temperature", GH_ParamAccess.item);
-            pManager.AddBooleanParameter("Fan", "F", "Use Fan (Default = true)", GH_ParamAccess.item, true);
+            pManager.AddBooleanParameter(Info.heatedBed[0], Info.heatedBed[1], Info.heatedBed[2], GH_ParamAccess.item);
+            pManager.AddIntegerParameter(Info.heatedBedTemp[0], Info.heatedBedTemp[1], Info.heatedBedTemp[2], GH_ParamAccess.item, 0);
+            pManager.AddIntegerParameter(Info.extruderTemp[0], Info.extruderTemp[1], Info.extruderTemp[2], GH_ParamAccess.item);
+            pManager.AddBooleanParameter(Info.fan[0], Info.fan[1], Info.fan[2], GH_ParamAccess.item, true);
         }
 
         /// <summary>
@@ -34,7 +32,7 @@ namespace Droid
         /// </summary>
         protected override void RegisterOutputParams(GH_Component.GH_OutputParamManager pManager)
         {
-            pManager.AddTextParameter("Header", "H ->", "Header Gcode", GH_ParamAccess.list);
+            pManager.AddTextParameter(Info.header[0], Info.header[1], Info.header[2], GH_ParamAccess.list);
         }
 
         /// <summary>

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Grasshopper.Kernel;
 using DroidLib;
 
-namespace Droid
+namespace Droid.Components
 {
     public class Footer : GH_Component
     {
@@ -12,9 +12,7 @@ namespace Droid
         /// Initializes a new instance of the MyComponent1 class.
         /// </summary>
         public Footer()
-          : base("Droid Gcode Footer", "DGFoot",
-              "Gcode Footer creation",
-              "Droid", "Gcode")
+          : base(Title.footer[0], Title.footer[1], Title.footer[2], Title.footer[3], Title.footer[4])
         {
         }
 
@@ -23,7 +21,7 @@ namespace Droid
         /// </summary>
         protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
         {
-            pManager.AddNumberParameter("Max Z", "MZ", "Max Z Height of print area", GH_ParamAccess.item);
+            pManager.AddNumberParameter(Info.height[0], Info.height[1], Info.height[2], GH_ParamAccess.item);
         }
 
         /// <summary>
@@ -31,7 +29,7 @@ namespace Droid
         /// </summary>
         protected override void RegisterOutputParams(GH_Component.GH_OutputParamManager pManager)
         {
-            pManager.AddTextParameter("Footer", "F ->", "Footer Gcode", GH_ParamAccess.list);
+            pManager.AddTextParameter(Info.footer[0], Info.footer[1], Info.footer[2], GH_ParamAccess.list);
         }
 
         /// <summary>

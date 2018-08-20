@@ -8,7 +8,7 @@ using DroidLib;
 
 
 
-namespace Droid
+namespace Droid.Components
 {
     using Polylines = List<Polyline>;
 
@@ -22,9 +22,7 @@ namespace Droid
         /// new tabs/panels will automatically be created.
         /// </summary>
         public Slicer()
-          : base("Droid Slicer", "Dslice",
-              "Slicer of Droid Mesh in preparation for 3D Printing",
-              "Droid", "Droid")
+          : base(Title.slicer[0], Title.slicer[1], Title.slicer[2], Title.slicer[3], Title.slicer[4])
         {
         }
 
@@ -33,8 +31,8 @@ namespace Droid
         /// </summary>
         protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
         {
-            pManager.AddGenericParameter("Droid Mesh", "-> DM", "Input Droid Mesh for Slicing", GH_ParamAccess.item);
-            pManager.AddGenericParameter("Droid Parameters", "-> DPr", "Droid Parameters for Slicing", GH_ParamAccess.item);
+            pManager.AddGenericParameter(Info.droidMesh[0], Info.droidMesh[1], Info.droidMesh[2], GH_ParamAccess.item);
+            pManager.AddGenericParameter(Info.parameters[0], Info.parameters[1], Info.parameters[2], GH_ParamAccess.item);
         }
 
         /// <summary>
@@ -42,12 +40,12 @@ namespace Droid
         /// </summary>
         protected override void RegisterOutputParams(GH_Component.GH_OutputParamManager pManager)
         {
-            pManager.AddGenericParameter("Droid Paths", "DP ->", "Droid Paths for use with Droid Components", GH_ParamAccess.item);
-            pManager.AddCurveParameter("Contour", "C", "Contour Out for preview", GH_ParamAccess.list);
-            pManager.AddCurveParameter("Shell", "S", "Shell Out for preview", GH_ParamAccess.list);
-            pManager.AddCurveParameter("Infill", "I", "Infill Out for preview", GH_ParamAccess.list);
-            pManager.AddCurveParameter("Skirt", "S", "Skirt Out for preview", GH_ParamAccess.list);
-            pManager.AddCurveParameter("Cap", "TB", "Cap Out for preview", GH_ParamAccess.list);
+            pManager.AddGenericParameter(Info.paths[0], Info.paths[1], Info.paths[2], GH_ParamAccess.item);
+            pManager.AddCurveParameter(Info.previewContour[0], Info.previewContour[1], Info.previewContour[2], GH_ParamAccess.list);
+            pManager.AddCurveParameter(Info.previewShell[0], Info.previewShell[1], Info.previewShell[2], GH_ParamAccess.list);
+            pManager.AddCurveParameter(Info.previewInfill[0], Info.previewInfill[1], Info.previewInfill[2], GH_ParamAccess.list);
+            pManager.AddCurveParameter(Info.previewSkirt[0], Info.previewSkirt[1], Info.previewSkirt[2], GH_ParamAccess.list);
+            pManager.AddCurveParameter(Info.previewCap[0], Info.previewCap[1], Info.previewCap[2], GH_ParamAccess.list);
         }
 
 

@@ -4,7 +4,7 @@ using Grasshopper.Kernel;
 using Rhino.Geometry;
 using DroidLib;
 
-namespace Droid
+namespace Droid.Components
 {
     public class Mesh : GH_Component
     {
@@ -12,9 +12,7 @@ namespace Droid
         /// Initializes a new instance of the MyComponent1 class.
         /// </summary>
         public Mesh()
-          : base("Droid Mesh", "DMesh",
-              "Converts and Centers mesh for Droid Slicer",
-              "Droid", "Droid")
+          : base(Title.mesh[0], Title.mesh[1], Title.mesh[2], Title.mesh[3], Title.mesh[4])
         {
         }
 
@@ -23,10 +21,10 @@ namespace Droid
         /// </summary>
         protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
         {
-            pManager.AddMeshParameter("Mesh", "M", "Input (closed) Mesh", GH_ParamAccess.item);
-            pManager.AddGenericParameter("Droid Volume", "-> DV", "Input Droid Volume", GH_ParamAccess.item);
-            pManager.AddNumberParameter("X Position", "X", "Re-Position of Mesh on X-Axis", GH_ParamAccess.item, 0);
-            pManager.AddNumberParameter("Y Position", "Y", "Re-Position of Mesh on Y-Axis", GH_ParamAccess.item, 0);
+            pManager.AddMeshParameter(Info.mesh[0], Info.mesh[1], Info.mesh[2], GH_ParamAccess.item);
+            pManager.AddGenericParameter(Info.droidVolume[0], Info.droidVolume[1], Info.droidVolume[2], GH_ParamAccess.item);
+            pManager.AddNumberParameter(Info.xPos[0], Info.xPos[1], Info.xPos[2], GH_ParamAccess.item, 0);
+            pManager.AddNumberParameter(Info.yPos[0], Info.yPos[1], Info.yPos[2], GH_ParamAccess.item, 0);
         }
 
         /// <summary>
@@ -34,8 +32,8 @@ namespace Droid
         /// </summary>
         protected override void RegisterOutputParams(GH_Component.GH_OutputParamManager pManager)
         {
-            pManager.AddGenericParameter("Droid Mesh", "DM ->", "Droid Mesh for use with Droid Components", GH_ParamAccess.item);
-            pManager.AddMeshParameter("Preview", "P", "Preview of Mesh Position", GH_ParamAccess.item);
+            pManager.AddGenericParameter(Info.droidMesh[0], Info.droidMesh[1], Info.droidMesh[2], GH_ParamAccess.item);
+            pManager.AddMeshParameter(Info.preview[0], Info.preview[1], Info.preview[2], GH_ParamAccess.item);
         }
 
         /// <summary>

@@ -5,7 +5,7 @@ using Grasshopper.Kernel;
 using Rhino.Geometry;
 using DroidLib;
 
-namespace Droid
+namespace Droid.Components
 {
     public class GCode : GH_Component
     {
@@ -13,9 +13,7 @@ namespace Droid
         /// Initializes a new instance of the MyComponent1 class.
         /// </summary>
         public GCode()
-          : base("Droid Gcode Creator", "GCode",
-              "Creates Gcode infomation from Droid components",
-              "Droid", "Gcode")
+          : base(Title.gcode[0], Title.gcode[1], Title.gcode[2], Title.gcode[3], Title.gcode[4])
         {
         }
 
@@ -24,10 +22,10 @@ namespace Droid
         /// </summary>
         protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
         {
-            pManager.AddGenericParameter("Droid Paths", "-> DP", "Input Droid Paths", GH_ParamAccess.item);
-            pManager.AddGenericParameter("Droid Parameters", "-> DPr", "Input Droid Parameters", GH_ParamAccess.item);
-            pManager.AddTextParameter("Droid Header", "-> H", "Input Header Text (from Droid component, or user custom text)", GH_ParamAccess.list);
-            pManager.AddTextParameter("Droid Footer", "-> F", "Input Footer Text (from Droid component, or user custom text)", GH_ParamAccess.list);
+            pManager.AddGenericParameter(Info.paths[0], Info.paths[1], Info.paths[2], GH_ParamAccess.item);
+            pManager.AddGenericParameter(Info.parameters[0], Info.parameters[1], Info.parameters[2], GH_ParamAccess.item);
+            pManager.AddTextParameter(Info.header[0], Info.header[1], Info.header[2], GH_ParamAccess.list);
+            pManager.AddTextParameter(Info.footer[0], Info.footer[1], Info.footer[2], GH_ParamAccess.list);
         }
 
         /// <summary>
@@ -35,7 +33,7 @@ namespace Droid
         /// </summary>
         protected override void RegisterOutputParams(GH_Component.GH_OutputParamManager pManager)
         {
-            pManager.AddTextParameter("Gcode", "GC ->", "Gcode as text", GH_ParamAccess.list);
+            pManager.AddTextParameter(Info.gcode[0], Info.gcode[1], Info.gcode[2], GH_ParamAccess.list);
         }
 
         /// <summary>

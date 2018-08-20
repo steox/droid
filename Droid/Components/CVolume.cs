@@ -3,7 +3,7 @@
 using Grasshopper.Kernel;
 using DroidLib;
 
-namespace Droid
+namespace Droid.Components
 {
     public class CVolume : GH_Component
     {
@@ -11,7 +11,7 @@ namespace Droid
         /// Initializes a new instance of the MyComponent1 class.
         /// </summary>
         public CVolume()
-          : base(Title.CVolume[0], Title.CVolume[1], Title.CVolume[2], Title.CVolume[3], Title.CVolume[4])
+          : base(Title.cVolume[0], Title.cVolume[1], Title.cVolume[2], Title.cVolume[3], Title.cVolume[4])
         {
         }
 

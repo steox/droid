@@ -3,7 +3,7 @@
 using Grasshopper.Kernel;
 using DroidLib;
 
-namespace Droid
+namespace Droid.Components
 {
     public class DVolume : GH_Component
     {
@@ -11,9 +11,7 @@ namespace Droid
         /// Initializes a new instance of the MyComponent1 class.
         /// </summary>
         public DVolume()
-          : base("Droid Volume (Delta)", "DVolD",
-              "Defines the Volume of the printable area of machine",
-              "Droid", "Droid")
+          : base(Title.dVolume[0], Title.dVolume[1], Title.dVolume[2], Title.dVolume[3], Title.dVolume[4])
         {
         }
 
@@ -22,8 +20,8 @@ namespace Droid
         /// </summary>
         protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
         {
-            pManager.AddNumberParameter("Diameter", "D", "Diameter of Print Area", GH_ParamAccess.item);
-            pManager.AddNumberParameter("Height", "Z", "Z-Height of Print Area", GH_ParamAccess.item);
+            pManager.AddNumberParameter(Info.diameter[0], Info.diameter[1], Info.diameter[2], GH_ParamAccess.item);
+            pManager.AddNumberParameter(Info.height[0], Info.height[1], Info.height[2], GH_ParamAccess.item);
         }
 
         /// <summary>
@@ -31,8 +29,8 @@ namespace Droid
         /// </summary>
         protected override void RegisterOutputParams(GH_Component.GH_OutputParamManager pManager)
         {
-            pManager.AddGenericParameter("Droid Volume", "DV ->", "Droid Volume for use for Droid Components", GH_ParamAccess.item);
-            pManager.AddCurveParameter("Preview", "P", "Preview of Printable area", GH_ParamAccess.list);
+            pManager.AddGenericParameter(Info.droidVolume[0], Info.droidVolume[1], Info.droidVolume[2], GH_ParamAccess.item);
+            pManager.AddCurveParameter(Info.preview[0], Info.preview[1], Info.preview[2], GH_ParamAccess.list);
         }
 
         /// <summary>

@@ -5,7 +5,7 @@ using Grasshopper.Kernel;
 using Rhino.Geometry;
 using DroidLib;
 
-namespace Droid
+namespace Droid.Components
 {
     public class Paths : GH_Component
     {
@@ -13,9 +13,7 @@ namespace Droid
         /// Initializes a new instance of the MyComponent1 class.
         /// </summary>
         public Paths()
-          : base("Droid Paths", "DPath",
-              "Set custom user defined curves (Polylines) for 3d Printing. IMPORTANT: Curves will print in the order the user has defined in input (Unless 'Sort Z' is set to 'true'). Will not check for collisions. For experimental projects",
-              "Droid", "Droid")
+          : base(Title.paths[0], Title.paths[1], Title.paths[2], Title.paths[3], Title.paths[4])
         {
         }
 
@@ -24,9 +22,9 @@ namespace Droid
         /// </summary>
         protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
         {
-            pManager.AddCurveParameter("Polylines", "P", "List of Polyline Curves (Convert line types to Polyline). 3D Curves accepted", GH_ParamAccess.list);
-            pManager.AddBooleanParameter("Sort Z", "Z", "Sort List of Curves by ascending Z Value at start of Curve. Default is False", GH_ParamAccess.item, false);
-            pManager.AddGenericParameter("Droid Volume", "-> DV", "Input Droid Volume", GH_ParamAccess.item);
+            pManager.AddCurveParameter(Info.polylines[0], Info.polylines[1], Info.polylines[2], GH_ParamAccess.list);
+            pManager.AddBooleanParameter(Info.sortZ[0], Info.sortZ[1], Info.sortZ[2], GH_ParamAccess.item, false);
+            pManager.AddGenericParameter(Info.droidVolume[0], Info.droidVolume[1], Info.droidVolume[2], GH_ParamAccess.item);
         }
 
         /// <summary>
@@ -34,7 +32,7 @@ namespace Droid
         /// </summary>
         protected override void RegisterOutputParams(GH_Component.GH_OutputParamManager pManager)
         {
-            pManager.AddGenericParameter("Droid Paths", "DP ->", "Droid Paths for use with Droid Components", GH_ParamAccess.item);
+            pManager.AddGenericParameter(Info.paths[0], Info.paths[1], Info.paths[2], GH_ParamAccess.item);
         }
 
         /// <summary>

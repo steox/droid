@@ -4,7 +4,7 @@ using Grasshopper.Kernel;
 
 using DroidLib;
 
-namespace Droid
+namespace Droid.Components
 {
     public class Parameters : GH_Component
     {
@@ -12,9 +12,7 @@ namespace Droid
         /// Initializes a new instance of the MyComponent1 class.
         /// </summary>
         public Parameters()
-          : base("Droid Parameters", "DPmters",
-              "Custom Parameter creation for Droid",
-              "Droid", "Droid")
+          : base(Title.parameters[0], Title.parameters[1], Title.parameters[2], Title.parameters[3], Title.parameters[4])
         {
         }
 
@@ -23,21 +21,21 @@ namespace Droid
         /// </summary>
         protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
         {
-            pManager.AddNumberParameter("Layer Height", "LH", "Layer Height Resolution", GH_ParamAccess.item);
-            pManager.AddNumberParameter("First Layer Height", "FLH", "First Layer Height Resolution", GH_ParamAccess.item);
-            pManager.AddIntegerParameter("Precision", "P", "Precision of sliced geometry (Whole Number [int]). Default value is 128", GH_ParamAccess.item, 128);
-            pManager.AddNumberParameter("Nozzle", "N", "Nozzle diameter, in millimeters", GH_ParamAccess.item);
-            pManager.AddIntegerParameter("Infill", "I", "Infill percentage (0% - 99%) (Whole Number [int])", GH_ParamAccess.item);
-            pManager.AddIntegerParameter("Shell Number", "S", "Outer Shell thickness, in Nozzle thickness (Shell Thickness = Nozzle diameter * Shell Number). Default = 1", GH_ParamAccess.item, 1);
-            pManager.AddBooleanParameter("Brim / Skirt", "BS", "For Brim = True, for Skirt = False. Default is False", GH_ParamAccess.item, false);
-            pManager.AddIntegerParameter("Brim / Skirt distance", "BSD", "For Brim : Number of Brim Offsets, For Skirt : Distance (in multiples of Nozzle Diameter) of Skirt Offset, For None : Parameter = 0 (default)", GH_ParamAccess.item, 0);
-            pManager.AddIntegerParameter("Top / Bottom", "TB", "Number of layers as Top and Bottom Caps", GH_ParamAccess.item);
-            pManager.AddIntegerParameter("Print Speed", "PS", "Speed of Printing in units per/s", GH_ParamAccess.item);
-            pManager.AddIntegerParameter("Travel Speed", "TS", "Speed of travelling when not printing in units per/s", GH_ParamAccess.item);
-            pManager.AddBooleanParameter("Retraction", "R", "Enable Retraction = true", GH_ParamAccess.item);
-            pManager.AddNumberParameter("Rectraction Distance", "RD", "Retraction Distance in millimeters", GH_ParamAccess.item);
-            pManager.AddIntegerParameter("Retraction Speed", "RS", "Feedrate of Retraction in units per/s", GH_ParamAccess.item);
-            pManager.AddNumberParameter("Filament Diameter", "F", "Filament Diameter, in millimeters. Also Extrusion volume (mm^2) per mm of extrusion for large scale extruders", GH_ParamAccess.item);
+            pManager.AddNumberParameter(Info.layerHeight[0], Info.layerHeight[1], Info.layerHeight[2], GH_ParamAccess.item);
+            pManager.AddNumberParameter(Info.firstLayerHeight[0], Info.firstLayerHeight[1], Info.firstLayerHeight[2], GH_ParamAccess.item);
+            pManager.AddIntegerParameter(Info.precision[0], Info.precision[1], Info.precision[2], GH_ParamAccess.item, 128);
+            pManager.AddNumberParameter(Info.nozzle[0], Info.nozzle[1], Info.nozzle[2], GH_ParamAccess.item);
+            pManager.AddIntegerParameter(Info.infill[0], Info.infill[1], Info.infill[2], GH_ParamAccess.item);
+            pManager.AddIntegerParameter(Info.shell[0], Info.shell[1], Info.shell[2], GH_ParamAccess.item, 1);
+            pManager.AddBooleanParameter(Info.skirt[0], Info.skirt[1], Info.skirt[2], GH_ParamAccess.item, false);
+            pManager.AddIntegerParameter(Info.brimDist[0], Info.brimDist[1], Info.brimDist[2], GH_ParamAccess.item, 0);
+            pManager.AddIntegerParameter(Info.cap[0], Info.cap[1], Info.cap[2], GH_ParamAccess.item);
+            pManager.AddIntegerParameter(Info.printSpeed[0], Info.printSpeed[1], Info.printSpeed[2], GH_ParamAccess.item);
+            pManager.AddIntegerParameter(Info.travelSpeed[0], Info.travelSpeed[1], Info.travelSpeed[2], GH_ParamAccess.item);
+            pManager.AddBooleanParameter(Info.retraction[0], Info.retraction[1], Info.retraction[2], GH_ParamAccess.item);
+            pManager.AddNumberParameter(Info.retractionDist[0], Info.retractionDist[1], Info.retractionDist[2], GH_ParamAccess.item);
+            pManager.AddIntegerParameter(Info.retractionSpeed[0], Info.retractionSpeed[1], Info.retractionSpeed[2], GH_ParamAccess.item);
+            pManager.AddNumberParameter(Info.filament[0], Info.filament[1], Info.filament[2], GH_ParamAccess.item);
         }
 
         /// <summary>
@@ -45,7 +43,7 @@ namespace Droid
         /// </summary>
         protected override void RegisterOutputParams(GH_Component.GH_OutputParamManager pManager)
         {
-            pManager.AddGenericParameter("Droid Paramerters", "DPr ->", "Parameter Data for Droid", GH_ParamAccess.item);
+            pManager.AddGenericParameter(Info.parameters[0], Info.parameters[1], Info.parameters[2], GH_ParamAccess.item);
         }
 
         /// <summary>

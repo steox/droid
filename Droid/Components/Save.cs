@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Grasshopper.Kernel;
 using DroidLib;
 
-namespace Droid
+namespace Droid.Components
 {
     public class Save : GH_Component
     {
@@ -12,9 +12,7 @@ namespace Droid
         /// Initializes a new instance of the MyComponent1 class.
         /// </summary>
         public Save()
-          : base("Droid Save Gcode", "SaveG",
-              "Save Gcode File",
-              "Droid", "Gcode")
+          : base(Title.save[0], Title.save[1], Title.save[2], Title.save[3], Title.save[4])
         {
         }
 
@@ -23,8 +21,8 @@ namespace Droid
         /// </summary>
         protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
         {
-            pManager.AddBooleanParameter("Save", "SAVE", "Save. Add Grasshopper Boolean Button", GH_ParamAccess.item, false);
-            pManager.AddTextParameter("Gcode", "-> GC", "Insert GCode text for saving", GH_ParamAccess.list);
+            pManager.AddBooleanParameter(Info.save[0], Info.save[1], Info.save[2], GH_ParamAccess.item, false);
+            pManager.AddTextParameter(Info.gcode[0], Info.gcode[1], Info.gcode[2], GH_ParamAccess.list);
         }
 
         /// <summary>
