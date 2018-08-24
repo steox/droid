@@ -36,6 +36,7 @@ namespace Droid.Components
             pManager.AddNumberParameter(Info.retractionDist[0], Info.retractionDist[1], Info.retractionDist[2], GH_ParamAccess.item);
             pManager.AddIntegerParameter(Info.retractionSpeed[0], Info.retractionSpeed[1], Info.retractionSpeed[2], GH_ParamAccess.item);
             pManager.AddNumberParameter(Info.filament[0], Info.filament[1], Info.filament[2], GH_ParamAccess.item);
+            pManager.AddNumberParameter(Info.flowRate[0], Info.flowRate[1], Info.flowRate[2], GH_ParamAccess.item, 1.00);
         }
 
         /// <summary>
@@ -68,6 +69,7 @@ namespace Droid.Components
             double retractionDistance = new double();
             int rectractionSpeed = new int();
             double filamentDiameter = new double();
+            double flowRate = new double();
 
             if (!DA.GetData(0, ref layerHeight) | (layerHeight <= 0)) return;
             if (!DA.GetData(1, ref firstLayerHeight) | (firstLayerHeight <= 0)) return;
@@ -84,6 +86,7 @@ namespace Droid.Components
             if (!DA.GetData(12, ref retractionDistance) | (retractionDistance < 0)) return;
             if (!DA.GetData(13, ref rectractionSpeed) | (rectractionSpeed < 0)) return;
             if (!DA.GetData(14, ref filamentDiameter) | (filamentDiameter < 0)) return;
+            if (!DA.GetData(15, ref flowRate) | (flowRate < 0)) return;
 
             DroidParameters parameters = new DroidParameters();
 
@@ -102,6 +105,7 @@ namespace Droid.Components
             parameters.rectractionDistance = retractionDistance;
             parameters.retractionSpeed = rectractionSpeed;
             parameters.filamentDiameter = filamentDiameter;
+            parameters.flowRate = flowRate;
 
             DA.SetData(0, parameters);
         }

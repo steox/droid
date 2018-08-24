@@ -47,7 +47,7 @@ namespace DroidLib
             layerHeight = parameters.layerHeight;
             firstLayerHeight = parameters.firstLayerHeight;
             filamentDiameter = parameters.filamentDiameter;
-            extrusionRate = (((nozzle * layerHeight) + (Math.PI * Math.Pow(layerHeight / 2, 2))) / (Math.PI * Math.Pow(filamentDiameter / 2, 2)));
+            extrusionRate =  ((nozzle * layerHeight) + (Math.PI * Math.Pow(layerHeight / 2, 2))) / (Math.PI * Math.Pow(filamentDiameter / 2, 2)) * parameters.flowRate;
             feedRate = (parameters.printSpeed * 60);
             travelRate = (parameters.travelSpeed * 60);
             retraction = parameters.retraction;
@@ -76,8 +76,8 @@ namespace DroidLib
                     code.Add("G92 E0");
                     code.Add("G1 E-" + retractionDistance + " F" + retractionSpeed);
                     code.AddRange(TravelTo(travelPos, travelRate));
+                    code.Add("G1 E0.1200" + " F" + retractionSpeed);
                     code.Add("G92 E0");
-                    code.Add("G1 E" + retractionDistance + " F" + retractionSpeed);
                 }
                 else
                 {

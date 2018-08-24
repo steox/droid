@@ -33,6 +33,7 @@ namespace DroidLib
         public double firstLayerHeight = new double();
         public double filamentDiameter = new double();
         public int retractionSpeed = new int();
+        public double flowRate = new double();
 
         public DroidParameters()
         { }
