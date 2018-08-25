@@ -9,8 +9,9 @@ using System.Windows.Forms;
 using Rhino.Geometry;
 using Rhino.Geometry.Intersect;
 using ClipperLib;
+using DroidLib;
 
-namespace DroidLib
+namespace _DroidLib
 {
     #region Internal Definitions 
 
@@ -25,22 +26,22 @@ namespace DroidLib
 
     public class DroidMesh
     {
-        private readonly Mesh inputMesh;
+        private Box rotatedBoundingBx;
         private double layerHeight;
         private int scale;
         private double extrusionWidth;
+        private static readonly Point3d origin = new Point3d(0, 0, 0);
+        private static readonly Vector3d normal = new Vector3d(0, 0, 1);
+        private static readonly Plane worldXY = new Plane(origin, normal);
+        private Plane rotateXY = new Plane(origin, normal);
+        private Paths[] startContour;
         public ConcurrentDictionary<int, Paths> startCD = new ConcurrentDictionary<int, Paths>();
         public ConcurrentDictionary<int, Paths> offsetCD = new ConcurrentDictionary<int, Paths>();
 
         public DroidMesh()
         {
         }
-
-        public DroidMesh(in Mesh _inputMesh)
-        {
-            inputMesh = _inputMesh;
-        }
-
+        
         public void AssignParameters(in double _layerHeight ,in int _scale, in double _nozzle)
         {
             layerHeight = _layerHeight;
@@ -52,13 +53,16 @@ namespace DroidLib
         /// Making of contours by layers - multi-threaded
         /// </summary>
         /// <returns></returns>
-        public ConcurrentDictionary<int, Polylines> Contour()
+        public ConcurrentDictionary<int, Polylines> Contour(Mesh inputMesh)
         {
-            Point3d origin = new Point3d(0, 0, 0);
-            Vector3d normal = new Vector3d(0, 0, 1);
-            Plane worldXY = new Plane(origin, normal);
+
+            rotateXY.Transform(Transform.Rotation(Math.PI * 0.25, origin));
             Box boundingBx = new Box(inputMesh.GetBoundingBox(worldXY));
+            rotatedBoundingBx = new Box(inputMesh.GetBoundingBox(rotateXY));
+            rotatedBoundingBx.Transform(Transform.Rotation(Math.PI * -0.25, origin));
+
             int layerNumber = (Convert.ToInt32((boundingBx.Z.Length - (boundingBx.Z.Length % layerHeight)) / layerHeight) + 1);
+            
             ConcurrentDictionary<int, Polylines> slicedMeshDic = new ConcurrentDictionary<int, Polylines>(Environment.ProcessorCount, layerNumber);
 
             Parallel.For(0, (layerNumber), i =>
@@ -134,22 +138,18 @@ namespace DroidLib
             Polylines cCap0 = new Polylines();
 
             Path boundPath = new Path();
-
-            Mesh rotateMesh = inputMesh;
-            rotateMesh.Rotate((Math.PI * 0.25), normal, origin);
-
-            BoundingBox BB = rotateMesh.GetBoundingBox(worldXY);
-            Point3d BBPt = BB.Center;
+                        
+            Point3d BBPt = rotatedBoundingBx.Center;
             BBPt.Z = 0;
-            BB.Transform(Transform.Scale(BBPt, 1.5));
+            rotatedBoundingBx.Transform(Transform.Scale(BBPt, 1.5));
 
-            Point3d[] corners = BB.GetCorners();
+            Point3d[] corners = rotatedBoundingBx.GetCorners();
 
-            corners[0].Transform(Transform.Rotation(Math.PI * 1.75, origin));
-            corners[1].Transform(Transform.Rotation(Math.PI * 1.75, origin));
-            corners[2].Transform(Transform.Rotation(Math.PI * 1.75, origin));
-            corners[3].Transform(Transform.Rotation(Math.PI * 1.75, origin));
-            rotateMesh.Rotate((Math.PI * 1.75), normal, origin);
+            corners[0].Transform(Transform.Rotation(Math.PI * -0.25, origin));
+            corners[1].Transform(Transform.Rotation(Math.PI * -0.25, origin));
+            corners[2].Transform(Transform.Rotation(Math.PI * -0.25, origin));
+            corners[3].Transform(Transform.Rotation(Math.PI * -0.25, origin));
+
             for (int w = 0; w <= 3; w++)
             {
                 IntPoint cnr = new SClipConvTo().Execute(corners[w], scale);

@@ -72,12 +72,18 @@ namespace DroidLib
                 Point3d travelPos = pl.First();
 
                 if (retraction)
-                { 
-                    code.Add("G92 E0");
-                    code.Add("G1 E-" + retractionDistance + " F" + retractionSpeed);
-                    code.AddRange(TravelTo(travelPos, travelRate));
-                    code.Add("G1 E0.1200" + " F" + retractionSpeed);
-                    code.Add("G92 E0");
+                {
+                    if (lastPos.DistanceTo(travelPos) > (nozzle * 1.2 * 10))
+                    {
+                        code.Add("G92 E0");
+                        code.Add("G1 E-" + retractionDistance + " F" + retractionSpeed);
+                        code.AddRange(TravelTo(travelPos, travelRate));
+                        code.Add("G1 E0.1200" + " F" + retractionSpeed);
+                    }
+                    else
+                    {
+                        code.AddRange(TravelTo(travelPos, travelRate));
+                    }
                 }
                 else
                 {
@@ -143,7 +149,7 @@ namespace DroidLib
 
         public DroidHeader(int bedtemp, int nozzletemp, bool haveHeatedBed, bool fanOn)
         {
-            header.Add("; Gcode produced by DROID for Grasshopper / Rhino");
+            header.Add("; Gcode produced with DROID for Grasshopper / Rhino");
             if (haveHeatedBed) header.Add("M140 S" + bedtemp);
             header.Add("M104 S" + nozzletemp);
             header.Add("G28 ; HOME");
@@ -152,7 +158,7 @@ namespace DroidLib
             header.Add("M82 ; ABSOLUTE EXTRUDE");
             header.Add("M109 S" + nozzletemp);
             if (haveHeatedBed) header.Add("M190 S" + bedtemp);
-            if (fanOn) header.Add("M106 S25");
+            if (fanOn) header.Add("M106 S255");
             header.Add("; END OF HEADER");
         }
     }
@@ -168,9 +174,8 @@ namespace DroidLib
             footer.Add("M104 S0");
             footer.Add("M140 S0");
             footer.Add("G92 E0");
-            footer.Add("G1 E-2 F1800");
+            footer.Add("G1 E-2 F3600");
             footer.Add("G1 Z" + MZ + " E0");
-            footer.Add("G28 X0 Y0");
             footer.Add("M84");
         }
     }

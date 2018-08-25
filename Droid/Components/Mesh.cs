@@ -42,8 +42,8 @@ namespace Droid.Components
         /// <param name="DA">The DA object is used to retrieve from inputs and store in outputs.</param>
         protected override void SolveInstance(IGH_DataAccess DA)
         {
-            Rhino.Geometry.Mesh inputMesh = new Rhino.Geometry.Mesh();
-            DroidVolume vol = new DroidVolume();
+            Rhino.Geometry.Mesh inputMesh = null;
+            DroidVolume vol = null;
             double x = new double();
             double y = new double();
 
@@ -58,7 +58,7 @@ namespace Droid.Components
             Vector3d trans = new Vector3d(x, y, 0);
             Rhino.Geometry.Mesh _inputMesh = new Rhino.Geometry.Mesh();
 
-            if (vol.size.Count == 2)
+            if (vol.volumeOutline.Length == 2)
             {
                 _inputMesh = inputMesh;
                 BoundingBox bbx = _inputMesh.GetBoundingBox(worldXY);
@@ -68,7 +68,7 @@ namespace Droid.Components
                 Vector3d toMiddle = new Vector3d((Point3d.Origin - center + trans));
                 _inputMesh.Transform(Transform.Translation(toMiddle));
             }
-            if (vol.size.Count == 3)
+            if (vol.volumeOutline.Length == 6)
             {
                 _inputMesh = inputMesh;
                 BoundingBox bbx = _inputMesh.GetBoundingBox(worldXY);
