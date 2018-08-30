@@ -19,7 +19,7 @@ namespace DroidLib
     {
         private List<string> _gcode = new List<string>();
 
-        public SaveGCode(List<string> gcode)
+        public SaveGCode(in List<string> gcode)
         {
             _gcode = gcode;
         }

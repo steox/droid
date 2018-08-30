@@ -28,7 +28,7 @@ namespace DroidLib
         public DroidPaths()
         { }
 
-        public DroidPaths(Polylines[] contours, Polylines[] shell, Polylines[] fill, Polylines[] skirt, Polylines[] cap)
+        public DroidPaths(in Polylines[] contours, in Polylines[] shell, in Polylines[] fill, in Polylines[] skirt, in Polylines[] cap)
         {
             List<Polylines> ordered = new List<Polylines>();
             Point3d pos = new Point3d(0, 0, 0);
@@ -99,7 +99,7 @@ namespace DroidLib
             }
         }
         
-        public DroidPaths(List<Curve> Curves, bool Sort, DroidVolume DV)
+        public DroidPaths(in List<Curve> Curves, in bool Sort, in DroidVolume DV)
         {
             List<Curve> allCurves = Curves;
             

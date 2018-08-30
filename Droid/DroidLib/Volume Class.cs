@@ -68,7 +68,7 @@ namespace DroidLib
             volumeOutline = new Curve[6] { bt, tp, p1, p2, p3, p4 };
 
         }
-        public DroidVolume(double diameter, double z)
+        public DroidVolume(in double diameter, in double z)
         {
 
             Circle bot = new Circle(new Point3d(0, 0, 0), (diameter / 2));

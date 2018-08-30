@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using System.Collections.Concurrent;
 using System.Linq;
 using System.IO;
 using System.Windows.Forms;
@@ -34,8 +33,6 @@ namespace DroidLib
         private static readonly Plane worldXY = new Plane(origin, normal);
         private Paths[] startContour;
         private Paths[] offsetContourLast;
-        //public ConcurrentDictionary<int, Paths> startCD = new ConcurrentDictionary<int, Paths>();
-        //public ConcurrentDictionary<int, Paths> offsetCD = new ConcurrentDictionary<int, Paths>();
 
         public DroidMesh()
         {
@@ -47,6 +44,7 @@ namespace DroidLib
             scale = _scale;
             extrusionWidth = (_nozzle * 1.20);
         }
+
         #region Contour
         /// <summary>
         /// Making of contours by layers - multi-threaded
@@ -120,6 +118,7 @@ namespace DroidLib
             return contourMesh;
         }
         #endregion
+
         #region Offset Creation
         // Offset Creation - multi-threaded
         //-------------------------------------------------------------------------------------------//
@@ -179,11 +178,12 @@ namespace DroidLib
             return offsetContours;
         }
         #endregion
+
         #region Skirt Brim
         // Brim / Skirt Creation
         //-------------------------------------------------------------------------------------------//
 
-        public Polylines[] BrimSkirt(int number, bool theboolean)
+        public Polylines[] BrimSkirt(in int number, in bool theboolean)
         {
             Polylines[] brimSkirtList = new Polylines[startContour.Length];
             Polylines pLines = new Polylines();
@@ -249,6 +249,7 @@ namespace DroidLib
         }
         #endregion
 
+        #region Boolean Paths
         /// <summary>
         /// Infill and Cap - intersection per Layer is multi-threaded (Execute Offset Creation method first)
         /// </summary>
@@ -703,8 +704,8 @@ namespace DroidLib
 
             return output;
         }
-
+        #endregion
     }
-    #endregion
+#endregion
 
 }

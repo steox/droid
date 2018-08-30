@@ -41,7 +41,7 @@ namespace DroidLib
             polylineList = printList;
         }
 
-        public List<string> Execute(DroidParameters parameters, List<string> header, List<string> footer)
+        public List<string> Execute(in DroidParameters parameters, in List<string> header, in List<string> footer)
         {
             nozzle = parameters.nozzle;
             layerHeight = parameters.layerHeight;
@@ -99,7 +99,7 @@ namespace DroidLib
             return allGCode;
         }
 
-        public List<string> PrintPolyline(Polyline pl, double printSpeed)
+        public List<string> PrintPolyline(in Polyline pl, in double printSpeed)
         {
             List<string> partGCode = new List<string>();
             partGCode.Add("G92 E0");
@@ -125,7 +125,7 @@ namespace DroidLib
             return partGCode;
         }
 
-        public List<string> TravelTo(Point3d pt, double travelSpeed)
+        public List<string> TravelTo(in Point3d pt, in double travelSpeed)
         {
             List<string> partGCode = new List<string>();
             partGCode.Add("G1 X" + Round(pt.X) + " Y" + Round(pt.Y) + " Z" + Round(pt.Z) + " F" + (int)travelSpeed);
@@ -147,7 +147,7 @@ namespace DroidLib
     {
         public List<string> header = new List<string>();
 
-        public DroidHeader(int bedtemp, int nozzletemp, bool haveHeatedBed, bool fanOn)
+        public DroidHeader(in int bedtemp, in int nozzletemp, in bool haveHeatedBed, in bool fanOn)
         {
             header.Add("; Gcode produced with DROID for Grasshopper / Rhino");
             if (haveHeatedBed) header.Add("M140 S" + bedtemp);
@@ -167,14 +167,14 @@ namespace DroidLib
     {
         public List<string> footer = new List<string>();
 
-        public DroidFooter(double MZ)
+        public DroidFooter(in double MZ)
         {
             footer.Add("; START OF FOOTER");
             footer.Add("M107");
             footer.Add("M104 S0");
             footer.Add("M140 S0");
             footer.Add("G92 E0");
-            footer.Add("G1 E-2 F3600");
+            footer.Add("G1 E-4 F3600");
             footer.Add("G1 Z" + MZ + " E0");
             footer.Add("M84");
         }

@@ -11,17 +11,17 @@ namespace DroidLib
 
         private string[] text;
 
-        public RegisterParams(string name, string nickname, string description)
+        public RegisterParams(in string name, in string nickname, in string description)
         {
             text = new string [3] {name, nickname, description};
         }
 
-        public RegisterParams(string name, string nickname, string description, string catagory, string subcatagory)
+        public RegisterParams(in string name, in string nickname, in string description, in string catagory, in string subcatagory)
         {
             text = new string[5] { name, nickname, description, catagory, subcatagory };
         }
 
-        public string this[int index]
+        public string this[in int index]
         {
             get
             {
