@@ -34,10 +34,6 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="clipper_library, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\com.angusj.Clipper.6.4.2\lib\net40\clipper_library.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="GH_IO">
       <HintPath>..\..\..\..\..\..\..\..\..\..\Program Files\Rhino 6\Plug-ins\Grasshopper\GH_IO.dll</HintPath>
       <Private>False</Private>
@@ -56,6 +52,7 @@
     <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Clipper\clipper.cs" />
     <Compile Include="Components\Title.cs" />
     <Compile Include="Components\Info.cs" />
     <Compile Include="DroidLib\Mesh class.cs" />

@@ -36,7 +36,7 @@ namespace Droid.Components
             pManager.AddNumberParameter(Info.retractionDist[0], Info.retractionDist[1], Info.retractionDist[2], GH_ParamAccess.item);
             pManager.AddIntegerParameter(Info.retractionSpeed[0], Info.retractionSpeed[1], Info.retractionSpeed[2], GH_ParamAccess.item);
             pManager.AddNumberParameter(Info.filament[0], Info.filament[1], Info.filament[2], GH_ParamAccess.item);
-            pManager.AddNumberParameter(Info.flowRate[0], Info.flowRate[1], Info.flowRate[2], GH_ParamAccess.item, 1.00);
+            pManager.AddNumberParameter(Info.flowRate[0], Info.flowRate[1], Info.flowRate[2], GH_ParamAccess.item, 100);
         }
 
         /// <summary>
