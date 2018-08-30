@@ -23,42 +23,44 @@ namespace DroidLib
     public class DroidPaths
     {
         public List<Polylines> wrapperList = new List<Polylines>();
-        public Dictionary<int, List<Polylines>> wrapperPaths = new Dictionary<int, List<Polylines>>();
         public Polylines printList = new Polylines();
 
         public DroidPaths()
         { }
 
-        public DroidPaths(ConcurrentDictionary<int, Polylines> contours, ConcurrentDictionary<int, Polylines> shell, ConcurrentDictionary<int, Polylines> fill, ConcurrentDictionary<int, Polylines> skirt, ConcurrentDictionary<int, Polylines> cap)
+        public DroidPaths(Polylines[] contours, Polylines[] shell, Polylines[] fill, Polylines[] skirt, Polylines[] cap)
         {
             List<Polylines> ordered = new List<Polylines>();
             Point3d pos = new Point3d(0, 0, 0);
             
-            List<ConcurrentDictionary<int, Polylines>> wrapper = new List<ConcurrentDictionary<int, Polylines>>();
+            List<Polylines[]> wrapper = new List<Polylines[]>(5);
             wrapper.Add(skirt);
             wrapper.Add(contours);
             wrapper.Add(shell);
             wrapper.Add(fill);
             wrapper.Add(cap);
-
+            
             for (int i = 0; i < wrapper.Count; i++)
             {
                 Polylines group = new Polylines();
-                foreach (Polylines x in wrapper[i].Values)
+                foreach (Polylines x in wrapper[i])
                 {
-                    foreach (Polyline y in x)
+                    if (x != null)
                     {
-                        group.Add(y);
+                        foreach (Polyline y in x)
+                        {
+                            group.Add(y);
+                        }
                     }
                 }
                 wrapperList.Add(group);
             }
-               
-            for (int i = 0; i < wrapper[1].Count; i++)
+
+            for (int i = 0; i < wrapper[1].Length; i++)
             {
                 for (int j = 0; j < wrapper.Count; j++)
                 {
-                    if (wrapper[j].ContainsKey(i))
+                    if (wrapper[j][i] != null)
                     {
                         ordered.Add(wrapper[j][i]);
                     }

@@ -58,16 +58,14 @@
   <ItemGroup>
     <Compile Include="Components\Title.cs" />
     <Compile Include="Components\Info.cs" />
-    <Compile Include="DroidLib\Mesh class - WIP.cs" />
-    <Compile Include="DroidLib\RegisterParams.cs" />
-    <Compile Include="DroidLib\Conversion Struct.cs" />
     <Compile Include="DroidLib\Mesh class.cs" />
+    <Compile Include="DroidLib\RegisterParams.cs" />
+    <Compile Include="DroidLib\Conversion class.cs" />
     <Compile Include="DroidLib\Paths class.cs" />
     <Compile Include="DroidLib\Save class.cs" />
     <Compile Include="DroidLib\Parameters Class.cs" />
     <Compile Include="DroidLib\Volume Class.cs" />
     <Compile Include="DroidLib\Gcode class.cs" />
-    <Compile Include="Components\Mesh.cs" />
     <Compile Include="Components\CVolume.cs" />
     <Compile Include="Components\DVolume.cs" />
     <Compile Include="Components\GCode.cs" />

@@ -51,6 +51,6 @@ namespace Droid.Components
         public static readonly RegisterParams previewInfill = new RegisterParams("Preview Infill", "PInfill", "Infill Out for preview");
         public static readonly RegisterParams previewSkirt = new RegisterParams("Preview Skirt", "PSkirt", "Skirt Out for preview");
         public static readonly RegisterParams previewCap = new RegisterParams("Preview Cap", "Pcap", "Cap Out for preview");
-        public static readonly RegisterParams flowRate = new RegisterParams("Flow Rate", "FR", "Flow rate / Extrusion multiplier");
+        public static readonly RegisterParams flowRate = new RegisterParams("Flow Rate", "FR", "Flow rate / Extrusion percentage");
     }
 }

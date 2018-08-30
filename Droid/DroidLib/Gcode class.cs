@@ -47,7 +47,7 @@ namespace DroidLib
             layerHeight = parameters.layerHeight;
             firstLayerHeight = parameters.firstLayerHeight;
             filamentDiameter = parameters.filamentDiameter;
-            extrusionRate =  ((nozzle * layerHeight) + (Math.PI * Math.Pow(layerHeight / 2, 2))) / (Math.PI * Math.Pow(filamentDiameter / 2, 2)) * parameters.flowRate;
+            extrusionRate =  ((nozzle * layerHeight) + (Math.PI * Math.Pow(layerHeight / 2, 2))) / (Math.PI * Math.Pow(filamentDiameter / 2, 2)) * (parameters.flowRate/100);
             feedRate = (parameters.printSpeed * 60);
             travelRate = (parameters.travelSpeed * 60);
             retraction = parameters.retraction;
