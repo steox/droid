@@ -29,7 +29,8 @@ namespace Droid.Components
             pManager.AddIntegerParameter(Info.shell[0], Info.shell[1], Info.shell[2], GH_ParamAccess.item, 1);
             pManager.AddBooleanParameter(Info.skirt[0], Info.skirt[1], Info.skirt[2], GH_ParamAccess.item, false);
             pManager.AddIntegerParameter(Info.brimDist[0], Info.brimDist[1], Info.brimDist[2], GH_ParamAccess.item, 0);
-            pManager.AddIntegerParameter(Info.cap[0], Info.cap[1], Info.cap[2], GH_ParamAccess.item);
+            pManager.AddIntegerParameter(Info.capTop[0], Info.capTop[1], Info.capTop[2], GH_ParamAccess.item);
+            pManager.AddIntegerParameter(Info.capBot[0], Info.capBot[1], Info.capBot[2], GH_ParamAccess.item);
             pManager.AddIntegerParameter(Info.printSpeed[0], Info.printSpeed[1], Info.printSpeed[2], GH_ParamAccess.item);
             pManager.AddIntegerParameter(Info.travelSpeed[0], Info.travelSpeed[1], Info.travelSpeed[2], GH_ParamAccess.item);
             pManager.AddBooleanParameter(Info.retraction[0], Info.retraction[1], Info.retraction[2], GH_ParamAccess.item);
@@ -62,7 +63,8 @@ namespace Droid.Components
             int shellNumber = new int();
             bool brimSkirt = new bool();
             int brimSkirtInt = new int();
-            int capThickness = new int();
+            int capTopThickness = new int();
+            int capBotThickness = new int();
             int printSpeed = new int();
             int travelSpeed = new int();
             bool retraction = new bool();
@@ -79,14 +81,15 @@ namespace Droid.Components
             if (!DA.GetData(5, ref shellNumber) | (shellNumber <= 0)) return;
             if (!DA.GetData(6, ref brimSkirt)) return;
             if (!DA.GetData(7, ref brimSkirtInt) | (brimSkirtInt < 0)) return;
-            if (!DA.GetData(8, ref capThickness) | (capThickness < 0)) return;
-            if (!DA.GetData(9, ref printSpeed) | (printSpeed < 0)) return;
-            if (!DA.GetData(10, ref travelSpeed) | (travelSpeed < 0)) return;
-            if (!DA.GetData(11, ref retraction)) return;
-            if (!DA.GetData(12, ref retractionDistance) | (retractionDistance < 0)) return;
-            if (!DA.GetData(13, ref rectractionSpeed) | (rectractionSpeed < 0)) return;
-            if (!DA.GetData(14, ref filamentDiameter) | (filamentDiameter < 0)) return;
-            if (!DA.GetData(15, ref flowRate) | (flowRate < 0)) return;
+            if (!DA.GetData(8, ref capTopThickness) | (capTopThickness < 0)) return;
+            if (!DA.GetData(9, ref capBotThickness) | (capBotThickness < 0)) return;
+            if (!DA.GetData(10, ref printSpeed) | (printSpeed < 0)) return;
+            if (!DA.GetData(11, ref travelSpeed) | (travelSpeed < 0)) return;
+            if (!DA.GetData(12, ref retraction)) return;
+            if (!DA.GetData(13, ref retractionDistance) | (retractionDistance < 0)) return;
+            if (!DA.GetData(14, ref rectractionSpeed) | (rectractionSpeed < 0)) return;
+            if (!DA.GetData(15, ref filamentDiameter) | (filamentDiameter < 0)) return;
+            if (!DA.GetData(16, ref flowRate) | (flowRate < 0)) return;
 
             DroidParameters parameters = new DroidParameters();
 
@@ -98,7 +101,8 @@ namespace Droid.Components
             parameters.shellNumber = shellNumber;
             parameters.brimSkirt = brimSkirt;
             parameters.brimSkirtInt = brimSkirtInt;
-            parameters.capThickness = capThickness;
+            parameters.capTopThickness = capTopThickness;
+            parameters.capBotThickness = capBotThickness;
             parameters.printSpeed = printSpeed;
             parameters.travelSpeed = travelSpeed;
             parameters.retraction = retraction;

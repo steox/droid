@@ -50,9 +50,15 @@ namespace DroidLib
         /// Making of contours by layers - multi-threaded
         /// </summary>
         /// <returns></returns>
-        public Polylines[] Contour(Mesh inputMesh)
+        public Polylines[] Contour(List<Mesh> inputMeshList)
         {
-            
+            Mesh inputMesh = new Mesh();
+            foreach (Mesh x in inputMeshList)
+            {
+                Box bound = new Box(x.GetBoundingBox(worldXY));
+                x.Transform(Transform.Translation(new Vector3d(0, 0, (0 - bound.ClosestPoint(origin).Z))));
+                inputMesh.Append(x);
+            }
             Box boundingBx = new Box(inputMesh.GetBoundingBox(worldXY));
             inputMesh.Transform(Transform.Rotation(Math.PI * 0.25, origin));
             rotatedBoundingBx = new Box(inputMesh.GetBoundingBox(worldXY));
@@ -70,6 +76,7 @@ namespace DroidLib
                 Paths off_contourByLayer = new Paths();
                 ClipperOffset offset = new ClipperOffset(2, 0.25);
                 Plane cutPlane = new Plane(new Point3d(0, 0, (i * layerHeight)), normal);
+
                 Curve[] arrayOfPoly = Mesh.CreateContourCurves(inputMesh, cutPlane);
 
                 foreach (Curve x in arrayOfPoly)
@@ -257,7 +264,7 @@ namespace DroidLib
         /// <param name="capThickness"></param>
         /// <param name="shellNumber"></param>
         /// <returns></returns>
-        public List<Polylines[]> DroidBoolPaths(int infillPercent, int capThickness, int shellNumber)
+        public List<Polylines[]> DroidBoolPaths(int infillPercent, int capTopThickness, int capBotThickness, int shellNumber)
         {
             Polylines[] capPaths = new Polylines[startContour.Length];
             Polylines[] fillPaths = new Polylines[startContour.Length];
@@ -286,7 +293,7 @@ namespace DroidLib
 
             #region cap creation
 
-            if (capThickness != 0)
+            if (capTopThickness != 0 && capBotThickness != 0)
             {
                 Line c1 = new Line(corners[0], corners[1]);
                 int noOfStrokesc1 = Convert.ToInt32(Math.Floor(c1.Length / extrusionWidth));
@@ -388,9 +395,9 @@ namespace DroidLib
                 ClipperOffset getOGT = new ClipperOffset(2, 0.25);
                 ClipperOffset getOGB = new ClipperOffset(2, 0.25);
                 
-                if (capThickness != 0)
+                if (capTopThickness != 0)
                 {
-                    if ((i + capThickness) >= (startContour.Length))
+                    if ((i + capTopThickness) >= (startContour.Length))
                     {
                         capTop = offsetContourLast[i];
                     }
@@ -398,12 +405,12 @@ namespace DroidLib
                     {
                         if (shellNumber != 1)
                         {
-                            getOGT.AddPaths(offsetContourLast[(i + capThickness)], JoinType.jtRound, EndType.etClosedPolygon);
+                            getOGT.AddPaths(offsetContourLast[(i + capTopThickness)], JoinType.jtRound, EndType.etClosedPolygon);
                             getOGT.Execute(ref thisOGT, (scale * (shellNumber - 1) * extrusionWidth));
                         }
                         else
                         {
-                            thisOGT = offsetContourLast[(i + capThickness)];
+                            thisOGT = offsetContourLast[(i + capTopThickness)];
                         }
                         foreach (Path adding in thisOGT)
                         {
@@ -451,7 +458,7 @@ namespace DroidLib
                         }
                     }
 
-                    if ((i - capThickness) < 0)
+                    if ((i - capBotThickness) < 0)
                     {
                         capBot = offsetContourLast[i];
                     }
@@ -459,12 +466,12 @@ namespace DroidLib
                     {
                         if (shellNumber != 1)
                         {
-                            getOGB.AddPaths(offsetContourLast[(i - capThickness)], JoinType.jtRound, EndType.etClosedPolygon);
+                            getOGB.AddPaths(offsetContourLast[(i - capBotThickness)], JoinType.jtRound, EndType.etClosedPolygon);
                             getOGB.Execute(ref thisOGB, (scale * (shellNumber - 1) * extrusionWidth));
                         }
                         else
                         {
-                            thisOGB = offsetContourLast[(i - capThickness)];
+                            thisOGB = offsetContourLast[(i - capBotThickness)];
                         }
                         foreach (Path adding in thisOGB)
                         {

@@ -34,6 +34,7 @@ namespace Droid.Components
         protected override void RegisterOutputParams(GH_Component.GH_OutputParamManager pManager)
         {
             pManager.AddTextParameter(Info.gcode[0], Info.gcode[1], Info.gcode[2], GH_ParamAccess.list);
+            pManager.AddTextParameter(Info.printInfo[0], Info.printInfo[1], Info.printInfo[2], GH_ParamAccess.list);
         }
 
         /// <summary>
@@ -53,11 +54,14 @@ namespace Droid.Components
             if (!DA.GetDataList(3, foot)) return;
 
             List<string> gcode = new List<string>();
+            List<string> info = new List<string>();
             DroidGCode output = new DroidGCode(dPath.printList);
 
             gcode = output.Execute(dPara, head, foot);
+            info = output.Info(dPara);
 
             DA.SetDataList(0, gcode);
+            DA.SetDataList(1, info);
         }
 
         /// <summary>

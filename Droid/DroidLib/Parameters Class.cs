@@ -25,7 +25,8 @@ namespace DroidLib
         public int shellNumber = new int();
         public bool brimSkirt = new bool();
         public int brimSkirtInt = new int();
-        public int capThickness = new int();
+        public int capTopThickness = new int();
+        public int capBotThickness = new int();
         public int printSpeed = new int();
         public int travelSpeed = new int();
         public bool retraction = new bool();

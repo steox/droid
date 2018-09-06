@@ -35,10 +35,47 @@ namespace DroidLib
         bool retraction;
         double retractionDistance;
         int retractionSpeed;
-        
+
         public DroidGCode(Polylines printList)
         {
             polylineList = printList;
+        }
+
+        public List<string> Info(in DroidParameters parameters)
+        {
+            List<string> info = new List<string>();
+            double printDistance = 0;
+            double travelDistance = 0;
+            Polylines travels = new Polylines();
+
+            for(int i = 0; i < polylineList.Count; i++)
+            {
+                printDistance += polylineList[i].Length;
+                Polyline buffer = new Polyline();
+                if (i != 0)
+                {
+                    buffer.Add(polylineList[(i - 1)].Last);
+                    buffer.Add(polylineList[(i)].First);
+                }
+                travels.Add(buffer);
+            }
+
+            foreach(Polyline x in travels)
+            {
+                travelDistance += x.Length;
+            }
+
+            double time = (printDistance / parameters.printSpeed) + (travelDistance / parameters.travelSpeed);
+            var timeSpan = TimeSpan.FromSeconds(time);
+            double mm3Used = (((parameters.nozzle * parameters.layerHeight) + (Math.PI * Math.Pow(parameters.layerHeight / 2, 2))) / (Math.PI * Math.Pow(parameters.filamentDiameter / 2, 2)) * (parameters.flowRate / 100) * printDistance);
+            double cm3Used = Round((mm3Used / 1000), 2);
+            double metersUsed = Round((mm3Used / (Math.Pow((parameters.filamentDiameter / 2), 2) * Math.PI) /1000),2);
+            info.Add("Print Infomation");
+            info.Add("Estimate time (hours,min,sec): " + timeSpan.Hours + ", " + timeSpan.Minutes + ", " + timeSpan.Seconds);
+            info.Add("Estimate meters of filament used: " + metersUsed + "m");
+            info.Add("Estimate cm^3 (cubic centermeters) used: " + cm3Used + "cm^3");
+
+            return info;
         }
 
         public List<string> Execute(in DroidParameters parameters, in List<string> header, in List<string> footer)

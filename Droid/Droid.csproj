@@ -33,7 +33,29 @@
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
-  <ItemGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Rhino 5|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Rhino 5\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <LangVersion>latest</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisIgnoreBuiltInRules>false</CodeAnalysisIgnoreBuiltInRules>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Rhino 6|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Rhino 6\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <LangVersion>latest</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisIgnoreBuiltInRules>false</CodeAnalysisIgnoreBuiltInRules>
+  </PropertyGroup>
+  <ItemGroup Condition="'$(Configuration)' == 'Rhino 6' OR '$(Configuration)' == 'Debug64' OR '$(Configuration)' == 'Release'">
     <Reference Include="GH_IO">
       <HintPath>..\..\..\..\..\..\..\..\..\..\Program Files\Rhino 6\Plug-ins\Grasshopper\GH_IO.dll</HintPath>
       <Private>False</Private>
@@ -51,6 +73,25 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
   </ItemGroup>
+  <ItemGroup Condition="'$(Configuration)' == 'Rhino 5'">
+    <Reference Include="GH_IO">
+      <HintPath>..\..\..\..\..\..\..\..\..\..\Users\Sebastian\AppData\Roaming\McNeel\Rhinoceros\5.0\Plug-ins\Grasshopper {B45A29B1-4343-4035-989E-044E8580D9CF}\0.9.76.0\GH_IO.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Grasshopper">
+      <HintPath>..\..\..\..\..\..\..\..\..\..\Users\Sebastian\AppData\Roaming\McNeel\Rhinoceros\5.0\Plug-ins\Grasshopper {B45A29B1-4343-4035-989E-044E8580D9CF}\0.9.76.0\Grasshopper.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="RhinoCommon">
+      <HintPath>..\..\..\..\..\..\..\..\..\..\Program Files\Rhinoceros 5 (64-bit)\System\RhinoCommon.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+  </ItemGroup>
+
   <ItemGroup>
     <Compile Include="Clipper\clipper.cs" />
     <Compile Include="Components\Title.cs" />
@@ -135,7 +176,7 @@ Erase "$(TargetPath)"</PostBuildEvent>
     <FallbackCulture>en-US</FallbackCulture>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug64|AnyCPU'">
-    <StartProgram>C:\Program Files\Rhinoceros 5 (64-bit)\System\Rhino.exe</StartProgram>
+    <StartProgram>C:\Program Files\Rhino 6\System\Rhino.exe</StartProgram>
     <StartArguments>
     </StartArguments>
     <StartAction>Program</StartAction>

@@ -25,8 +25,6 @@ namespace Droid.Components
         public static readonly RegisterParams extruderTemp = new RegisterParams("Extruder Temp", "ET", "Set Extruder Hotend Temperature");
         public static readonly RegisterParams fan = new RegisterParams("Fan", "Fan", "Use Fan (True = On)");
         public static readonly RegisterParams mesh = new RegisterParams("Mesh", "M", "Input (closed) Mesh");
-        public static readonly RegisterParams xPos = new RegisterParams("X Position", "XPos", "Re-Position of Mesh on X-Axis");
-        public static readonly RegisterParams yPos = new RegisterParams("Y Position", "YPos", "Re-Position of Mesh on Y-Axis");
         public static readonly RegisterParams droidMesh = new RegisterParams("Droid Mesh", "DMesh", "Droid Mesh for use with Droid");
         public static readonly RegisterParams layerHeight = new RegisterParams("Layer Height", "LH", "Layer Height Resolution");
         public static readonly RegisterParams firstLayerHeight = new RegisterParams("First Layer Height", "FLH", "First Layer Height Resolution");
@@ -36,7 +34,8 @@ namespace Droid.Components
         public static readonly RegisterParams shell = new RegisterParams("Shell Number", "S", "Number of Outer Shells, in Nozzle thickness multiples");
         public static readonly RegisterParams skirt = new RegisterParams("Brim / Skirt", "BS", "For Brim = True, for Skirt = False");
         public static readonly RegisterParams brimDist = new RegisterParams("Brim / Skirt distance", "BSD", "Number of Brims or Distance of Skirt. 0 = none");
-        public static readonly RegisterParams cap = new RegisterParams("Top / Bottom", "TB", "Number of layers as Top and Bottom Caps");
+        public static readonly RegisterParams capTop = new RegisterParams("Top", "T", "Number of layers as Top Caps");
+        public static readonly RegisterParams capBot = new RegisterParams("Bottom", "B", "Number of layers as Bottom Caps");
         public static readonly RegisterParams printSpeed = new RegisterParams("Print Speed", "PS", "Speed of Printing in units per/s");
         public static readonly RegisterParams travelSpeed = new RegisterParams("Travel Speed", "TS", "Speed of travelling when not printing in units per/s");
         public static readonly RegisterParams retraction = new RegisterParams("Retraction", "R", "Enable Retraction = true");
@@ -51,6 +50,7 @@ namespace Droid.Components
         public static readonly RegisterParams previewInfill = new RegisterParams("Preview Infill", "PInfill", "Infill Out for preview");
         public static readonly RegisterParams previewSkirt = new RegisterParams("Preview Skirt", "PSkirt", "Skirt Out for preview");
         public static readonly RegisterParams previewCap = new RegisterParams("Preview Cap", "Pcap", "Cap Out for preview");
-        public static readonly RegisterParams flowRate = new RegisterParams("Flow Rate", "FR", "Flow rate / Extrusion percentage");
+        public static readonly RegisterParams flowRate = new RegisterParams("Flow Rate", "FR", "Flow rate / Extrusion Multiplier percentage");
+        public static readonly RegisterParams printInfo = new RegisterParams("Print Info", "PI", "Information related to print");
     }
 }

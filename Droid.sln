@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2016
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Droid", "Droid\Droid.csproj", "{6B62BC1C-6EDC-48F8-84ED-5C5836758352}"
 EndProject
@@ -11,14 +11,23 @@ Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug64|Any CPU = Debug64|Any CPU
 		Release|Any CPU = Release|Any CPU
+		Rhino 5|Any CPU = Rhino 5|Any CPU
+		Rhino 6|Any CPU = Rhino 6|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{6B62BC1C-6EDC-48F8-84ED-5C5836758352}.Debug64|Any CPU.ActiveCfg = Debug64|Any CPU
 		{6B62BC1C-6EDC-48F8-84ED-5C5836758352}.Debug64|Any CPU.Build.0 = Debug64|Any CPU
 		{6B62BC1C-6EDC-48F8-84ED-5C5836758352}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6B62BC1C-6EDC-48F8-84ED-5C5836758352}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6B62BC1C-6EDC-48F8-84ED-5C5836758352}.Rhino 5|Any CPU.ActiveCfg = Rhino 5|Any CPU
+		{6B62BC1C-6EDC-48F8-84ED-5C5836758352}.Rhino 5|Any CPU.Build.0 = Rhino 5|Any CPU
+		{6B62BC1C-6EDC-48F8-84ED-5C5836758352}.Rhino 6|Any CPU.ActiveCfg = Rhino 6|Any CPU
+		{6B62BC1C-6EDC-48F8-84ED-5C5836758352}.Rhino 6|Any CPU.Build.0 = Rhino 6|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D3E52B7F-6A6C-49E9-AA86-702666CE193D}
 	EndGlobalSection
 EndGlobal
