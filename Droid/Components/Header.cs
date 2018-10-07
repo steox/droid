@@ -24,7 +24,7 @@ namespace Droid.Components
             pManager.AddBooleanParameter(Info.heatedBed[0], Info.heatedBed[1], Info.heatedBed[2], GH_ParamAccess.item);
             pManager.AddIntegerParameter(Info.heatedBedTemp[0], Info.heatedBedTemp[1], Info.heatedBedTemp[2], GH_ParamAccess.item, 0);
             pManager.AddIntegerParameter(Info.extruderTemp[0], Info.extruderTemp[1], Info.extruderTemp[2], GH_ParamAccess.item);
-            pManager.AddBooleanParameter(Info.fan[0], Info.fan[1], Info.fan[2], GH_ParamAccess.item, true);
+            pManager.AddIntegerParameter(Info.fan[0], Info.fan[1], Info.fan[2], GH_ParamAccess.item);
         }
 
         /// <summary>
