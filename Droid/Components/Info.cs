@@ -23,7 +23,7 @@ namespace Droid.Components
         public static readonly RegisterParams heatedBed = new RegisterParams("Has Heated Bed", "HB", "Option to use Heated Bed");
         public static readonly RegisterParams heatedBedTemp = new RegisterParams("Heated Bed Temp", "HBT", "Set Heated Bed Temperature");
         public static readonly RegisterParams extruderTemp = new RegisterParams("Extruder Temp", "ET", "Set Extruder Hotend Temperature");
-        public static readonly RegisterParams fan = new RegisterParams("Fan", "Fan", "Use Fan (True = On)");
+        public static readonly RegisterParams fan = new RegisterParams("Fan", "Fan", "Fan Power (0-100)");
         public static readonly RegisterParams mesh = new RegisterParams("Mesh", "M", "Input (closed) Mesh");
         public static readonly RegisterParams droidMesh = new RegisterParams("Droid Mesh", "DMesh", "Droid Mesh for use with Droid");
         public static readonly RegisterParams layerHeight = new RegisterParams("Layer Height", "LH", "Layer Height Resolution");

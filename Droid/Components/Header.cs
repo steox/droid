@@ -42,14 +42,14 @@ namespace Droid.Components
         protected override void SolveInstance(IGH_DataAccess DA)
         {
             bool heatBedB = new bool();
-            bool fan = new bool();
+            int fan = new int();
             int heatBedT = new int();
             int extrudeT = new int();
 
             if (!DA.GetData(0, ref heatBedB)) return;
             if (!DA.GetData(1, ref heatBedT)) return;
             if (!DA.GetData(2, ref extrudeT)) return;
-            if (!DA.GetData(3, ref fan)) return;
+            if (!DA.GetData(3, ref fan) | (fan < 0) | (fan > 100)) return;
 
             DroidHeader head = new DroidHeader(heatBedT, extrudeT, heatBedB, fan);
 

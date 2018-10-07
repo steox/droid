@@ -184,7 +184,7 @@ namespace DroidLib
     {
         public List<string> header = new List<string>();
 
-        public DroidHeader(in int bedtemp, in int nozzletemp, in bool haveHeatedBed, in bool fanOn)
+        public DroidHeader(in int bedtemp, in int nozzletemp, in bool haveHeatedBed, in int fanOn)
         {
             header.Add("; Gcode produced with DROID for Grasshopper / Rhino");
             if (haveHeatedBed) header.Add("M140 S" + bedtemp);
@@ -195,7 +195,7 @@ namespace DroidLib
             header.Add("M82 ; ABSOLUTE EXTRUDE");
             header.Add("M109 S" + nozzletemp);
             if (haveHeatedBed) header.Add("M190 S" + bedtemp);
-            if (fanOn) header.Add("M106 S255");
+            header.Add("M106 S" + Math.Ceiling(fanOn * (255.0 / 100.0)));
             header.Add("; END OF HEADER");
         }
     }
