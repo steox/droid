@@ -171,11 +171,11 @@ namespace DroidLib
 
         public double Round(double number)
         {
-            return ((int)(number * Math.Pow(10, 3))) / Math.Pow(10, 3);
+            return ((int64)(number * Math.Pow(10, 3))) / Math.Pow(10, 3);
         }
         public double Round(double number, int place)
         {
-            return ((int)(number * Math.Pow(10, place))) / Math.Pow(10, place);
+            return ((int64)(number * Math.Pow(10, place))) / Math.Pow(10, place);
         }
 
     }
