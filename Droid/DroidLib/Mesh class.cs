@@ -146,7 +146,7 @@ namespace DroidLib
 
                     offset.Clear();
                     offset.AddPaths(buffer, JoinType.jtRound, EndType.etClosedPolygon);
-                    offset.Execute(ref solution, ((j * (-1 * extrusionWidth)) * scale));
+                    offset.Execute(ref solution, (((-1 * extrusionWidth)) * scale));
                     buffer.Clear();
 
                     foreach (Path x in solution)
