@@ -293,7 +293,7 @@ namespace DroidLib
 
             #region cap creation
 
-            if (capTopThickness != 0 && capBotThickness != 0)
+            if ((capTopThickness != 0 && capBotThickness != 0) || (capTopThickness != 0 || capBotThickness != 0))
             {
                 Line c1 = new Line(corners[0], corners[1]);
                 int noOfStrokesc1 = Convert.ToInt32(Math.Floor(c1.Length / extrusionWidth));
@@ -395,7 +395,7 @@ namespace DroidLib
                 ClipperOffset getOGT = new ClipperOffset(2, 0.25);
                 ClipperOffset getOGB = new ClipperOffset(2, 0.25);
                 
-                if (capTopThickness != 0)
+                if (capTopThickness != 0 | capBotThickness != 0)
                 {
                     if ((i + capTopThickness) >= (startContour.Length))
                     {
