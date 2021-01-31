@@ -38,6 +38,9 @@ namespace Droid.Components
 
         public static readonly RegisterParams slicer = new RegisterParams
             ("Droid Slicer", "Dslice", "Slicer of Droid Mesh in preparation for 3D Printing", "Droid", "Droid");
+
+        public static readonly RegisterParams print = new RegisterParams
+            ("Droid Print Paths", "PPath", "Output of print paths from Droid", "Droid", "Droid");
     }
     
 }
